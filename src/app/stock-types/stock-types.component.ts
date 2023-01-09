@@ -62,10 +62,6 @@ export class StockTypesComponent implements OnInit {
   rtlEnabled = false;
   placeholder = 'Search...';
 
-  pagingOptions:any;
-
-
-
   constructor(public service:StockTypeService, public readonly list:ListService,
     private fb: FormBuilder) { }
 
@@ -73,23 +69,6 @@ export class StockTypesComponent implements OnInit {
     this.loadStockTypes();
   }
 
-  onPageChanged(e: any) {
-
-    this.pagingOptions = {
-      pageSize: e.component.option("paging.pageSize")
-    }
-
-    this.pagingOptions = e.component.option("paging");
-    localStorage.setItem("pagingOptions", JSON.stringify(this.pagingOptions));
-  }
-
-  onContentReady(e: any) {
-    const storedOptions = localStorage.getItem("pagingOptions");
-    if (storedOptions) {
-      this.pagingOptions = JSON.parse(storedOptions);
-      e.component.option("paging", this.pagingOptions);
-    }
-  }
 
   //counter
   updateCount(){
