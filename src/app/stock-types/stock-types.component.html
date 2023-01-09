@@ -1,0 +1,193 @@
+<div>
+  <dx-button
+   class="btn btn-primary"
+   (onClick)="createStockType2()"
+   icon="plus"
+   [style]="rtlEnabled ? 'margin-left:89%' : ''"
+   >{{ 'Definitions::CreateStockType' | abpLocalization}}</dx-button>
+</div>
+
+<br>
+<div class="row">
+  <div class="col md-8">
+      <h5> {{rtlEnabled ? 'العدد الإجمالي للبيانات' : 'Toplam veri sayisi'}}  : {{count}}</h5>
+  </div>
+  <div class="col md-4" class="dxselectbox">
+    <dx-select-box [(ngModel)]="selectedOption"
+    [items]="props"
+    [value]="props[0]"
+    (ngModelChange)="onOptionChange()"
+    valueExpr="value"
+    displayExpr="text"
+
+    [rtlEnabled]="rtlEnabled"
+    >
+    </dx-select-box>
+  </div>
+</div>
+
+<br>
+<br>
+
+<dx-data-grid
+[dataSource]="loadstocktypedatasource" [hoverStateEnabled]="true"  [columnAutoWidth]="true"
+[remoteOperations]="true"
+[allowColumnReordering]="true"
+[rowAlternationEnabled]="true"
+[columnHidingEnabled]="true"
+key="id"
+[showRowLines]="true"
+#dxStockTypeInstance
+(onContentReady)="updateCount()"
+
+id="dxdg"
+
+[paging] = "{enabled : selectedOption === 'paging'}"
+[pager]=  "{visible : selectedOption === 'paging'}"
+[scrolling]= "{mode : selectedOption === 'infinite' ? 'infinite' : 'standard'}"
+
+[rtlEnabled]="rtlEnabled"
+
+(pageChanged)="onPageChanged($event)"
+  (onContentReady)="onContentReady($event)"
+>
+
+<dxo-paging [pageSize]="3"></dxo-paging>
+<dxo-pager
+[visible]="true"
+[allowedPageSizes]="allowedPageSizes"
+[displayMode]="displayMode"
+[showPageSizeSelector]="showPageSizeSelector"
+[showInfo]="showInfo"
+[showNavigationButtons]="showNavButtons"
+
+
+>
+</dxo-pager>
+
+
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+
+  <dxo-load-panel [enabled]="false"></dxo-load-panel>
+  <dxo-scrolling mode="infinite"></dxo-scrolling>
+  <dxo-sorting mode="none"></dxo-sorting>
+
+    <dxo-search-panel
+      [visible]="true"
+      [highlightCaseSensitive]="true"
+      [placeholder]="placeholder"
+    ></dxo-search-panel>
+
+    <dxi-column type="buttons">
+      <dxi-button [onClick]="editStockType2" icon="edit"></dxi-button>
+      <dxi-button [onClick]="getDeleteId" icon="trash"></dxi-button>
+    </dxi-column>
+
+    <dxi-column dataField="id" caption="Id"  ></dxi-column>
+    <dxi-column dataField="code" [caption]="rtlEnabled ? 'الشفرة' : 'Code'" ></dxi-column>
+    <dxi-column dataField="name" [caption]="rtlEnabled ? 'اسم' : 'Name'" ></dxi-column>
+    <dxi-column dataField="allowMinusOpr" [caption]="rtlEnabled ? 'السماح ناقص الاوبرايتون' : 'AllowMinusOpr'" ></dxi-column>
+
+</dx-data-grid>
+<br>
+
+
+<!-- Paging Options -->
+<div class="options">
+  <div class="caption" [style]="rtlEnabled ? 'margin-left:94%' : ''">Options</div>
+  <div class="option-container">
+    <div class="option">
+      <dx-select-box
+        [rtlEnabled]="rtlEnabled"
+        id="displayModes"
+        displayExpr="text"
+        valueExpr="value"
+        [items]="displayModes"
+        [(value)]="displayMode"
+      >
+      </dx-select-box>
+    </div>
+    <div class="option">
+      <dx-check-box
+        [rtlEnabled]="rtlEnabled"
+        id="showPageSizes"
+        [text]="rtlEnabled ? 'Arapça Show Page Sizes' : 'Show Page Sizes'"
+        [(value)]="showPageSizeSelector"
+
+      >
+      </dx-check-box>
+    </div>
+    <div class="option">
+      <dx-check-box id="showInfo"
+       [text]="rtlEnabled ? 'Arapça Show Info Text' : 'Show Info Text'"
+       [(value)]="showInfo"
+       [rtlEnabled]="rtlEnabled">
+      </dx-check-box>
+    </div>
+    <div class="option">
+      <dx-check-box
+      [rtlEnabled]="rtlEnabled"
+        id="showNavButtons"
+        [text]="rtlEnabled ? 'Arapça Show Nav But.' : 'Show Nav Buttons'"
+        [disabled]="isCompactMode"
+        [(value)]="showNavButtons"
+      >
+      </dx-check-box>
+    </div>
+    <div class="option">
+      <span>Language:</span>
+      <dx-select-box
+        id="select-language"
+        [items]="languages"
+        [value]="languages[1]"
+        [width]="250"
+        (onValueChanged)="selectLanguage($event)"
+      >
+      </dx-select-box>
+    </div>
+  </div>
+</div>
+
+
+<dx-popup
+    [width]="500"
+    [height]="380"
+    [showTitle]="true"
+    title= "Stok Tipi Oluştur/Düzenle"
+    [dragEnabled]="false"
+    [hideOnOutsideClick]="true"
+    [showCloseButton]="false"
+
+    [(visible)]="popupVisible"
+  >
+  <form [formGroup]="form" (ngSubmit)="save2()">
+      <div class="form-group">
+        <label class="mt-1" >{{ 'Definitions::Code' | abpLocalization }}</label>
+        <dx-text-box  class="form-control mt-1" [(value)]=" selectedSt.code" (onValueChanged)="editFormChanged($event)" ></dx-text-box>
+
+        <label class="mt-1">{{ 'Definitions::Name' | abpLocalization }}</label>
+        <dx-text-box class="form-control mt-1" [(value)]=" selectedSt.name "></dx-text-box>
+
+        <label class="mt-3 " >{{ 'Definitions::AllowMinusOpr' | abpLocalization}}</label>
+        <dx-check-box class="mt-1 " [(value)]=" selectedSt.allowMinusOpr"></dx-check-box>
+      </div>
+  </form>
+
+  <br>
+        <dx-button class="mt-1" style="float: right;" (onClick) = "save2()" icon="check" >{{ 'Definitions::Kaydet' | abpLocalization}}</dx-button>
+        <dxo-position at="center" my="center" [of]="positionOf" collision="fit"></dxo-position>
+  </dx-popup>
+
+  <dx-popup [(visible)] = "popupdelete"
+            [width]="250"
+            [height]="200">
+      <p> {{ 'Definitions::SureToDelete' | abpLocalization }} </p>
+      <div >
+          <dx-button (onClick)="delete2()" class="dxdelete"> {{ 'Definitions::Sil' | abpLocalization}} </dx-button>
+          <dx-button (onClick) ="cancel()" class="dxcancel"> {{ 'Definitions::IptalEt' | abpLocalization}} </dx-button>
+    </div>
+  </dx-popup>
+
+<br>
+<br>

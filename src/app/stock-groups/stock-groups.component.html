@@ -1,0 +1,216 @@
+<div>
+  <dx-button class="btn btn-primary"
+  (onClick)="createStockGroup()"
+  icon="plus"
+  [style]="rtlEnabled ? 'margin-left:89%' : ''">{{ 'Definitions::CreateStockGroup' | abpLocalization}}</dx-button>
+</div>
+
+<br>
+<div class="row">
+  <div class="col md-8">
+      <h5> {{rtlEnabled ? 'العدد الإجمالي للبيانات' : 'Toplam veri sayisi'}}  : {{count}}</h5>
+  </div>
+  <div class="col md-4" class="dxselectbox">
+    <dx-select-box [(ngModel)]="selectedOption"
+    [items]="props"
+    [value]="props[0]"
+    (ngModelChange)="onOptionChange()"
+    valueExpr="value"
+    displayExpr="text"
+
+    [rtlEnabled]="rtlEnabled"
+    >
+    </dx-select-box>
+  </div>
+</div>
+
+<br>
+
+<dx-data-grid
+[dataSource]="loadstocktypelookupdatasource" [hoverStateEnabled]="true"  [columnAutoWidth]="true"
+[remoteOperations]="true"
+[allowColumnReordering]="true"
+[rowAlternationEnabled]="true"
+[columnHidingEnabled]="true"
+key="id"
+[showRowLines]="true"
+#dxStockGroupInstance
+(onContentReady)="updateCount()"
+
+id="dxdg"
+
+[paging] = "{enabled : selectedOption === 'paging'}"
+[pager]=  "{visible : selectedOption === 'paging'}"
+[scrolling]= "{mode : selectedOption === 'infinite' ? 'infinite' : 'standard'}"
+
+[rtlEnabled]="rtlEnabled"
+>
+
+<dxo-paging [pageSize]="6"></dxo-paging>
+
+<dxo-pager
+[visible]="true"
+[allowedPageSizes]="allowedPageSizes"
+[displayMode]="displayMode"
+[showPageSizeSelector]="showPageSizeSelector"
+[showInfo]="showInfo"
+[showNavigationButtons]="showNavButtons"
+
+>
+</dxo-pager>
+
+<!-- <dxo-summary >
+  <dxi-total-item class="totalitem" column="Code" summaryType="count"></dxi-total-item>
+</dxo-summary> -->
+
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+  <dxo-load-panel [enabled]="false"></dxo-load-panel>
+  <dxo-scrolling mode="infinite"></dxo-scrolling>
+  <dxo-sorting mode="none"></dxo-sorting>
+
+
+    <dxo-search-panel
+      [visible]="true"
+      [highlightCaseSensitive]="true"
+      [placeholder]="placeholder"
+    ></dxo-search-panel>
+
+    <dxi-column type="buttons">
+      <dxi-button [onClick]="editStockGroup" icon="edit"></dxi-button>
+      <dxi-button [onClick]="getDeleteId" icon="trash"></dxi-button>
+    </dxi-column>
+
+    <dxi-column dataField="stockGroup.id" caption="Id" ></dxi-column>
+    <dxi-column dataField="stockType.code" caption="Stock Type" ></dxi-column>
+    <dxi-column dataField="stockGroup.code" caption="Code" ></dxi-column>
+    <dxi-column dataField="stockGroup.name" caption="Name" ></dxi-column>
+    <dxi-column dataField="stockGroup.parentId" caption="ParentId" >
+      <dxo-lookup
+            [dataSource]="loadstocktypelookupdatasource"
+            valueExpr="stockGroup.id"
+            displayExpr="stockGroup.code"
+            >
+        </dxo-lookup>
+    </dxi-column>
+
+</dx-data-grid>
+<br>
+
+<!-- Paging Options -->
+<div class="options">
+  <div class="caption" [style]="rtlEnabled ? 'margin-left:94%' : ''">Options</div>
+  <div class="option-container">
+    <div class="option" >
+      <dx-select-box
+        id="displayModes"
+        displayExpr="text"
+        valueExpr="value"
+        [items]="displayModes"
+        [(value)]="displayMode"
+        (valueChange)="changeGridOptions('displayModes', $event)"
+        [rtlEnabled]="rtlEnabled"
+      >
+      </dx-select-box>
+    </div>
+    <div class="option">
+      <dx-check-box
+        id="showPageSizes"
+        [text]="rtlEnabled ? 'Arapça Show Page Sizes' : 'Show Page Sizes'"
+        [(value)]="showPageSizeSelector"
+        (valueChange)="changeGridOptions('showPageSizeSelector', $event)"
+        [rtlEnabled]="rtlEnabled"
+      >
+      </dx-check-box>
+    </div>
+    <div class="option" >
+      <dx-check-box id="showInfo"
+      [text]="rtlEnabled ? 'Arapça Show Info Text' : 'Show Info Text'"
+      [(value)]="gridOptions.showInfo"
+      (valueChange)="changeGridOptions('showInfo', $event)"
+      [rtlEnabled]="rtlEnabled">
+      </dx-check-box>
+    </div>
+    <div class="option" >
+      <dx-check-box
+        id="showNavButtons"
+        [text]="rtlEnabled ? 'Arapça Show Nav But.' : 'Show Nav Buttons'"
+        [disabled]="isCompactMode"
+        [(value)]="gridOptions.showNavButtons"
+        (valueChange)="changeGridOptions('showNavButtons', $event)"
+        [rtlEnabled]="rtlEnabled"
+      >
+      </dx-check-box>
+    </div>
+    <div class="option">
+      <span>Language:</span>
+      <dx-select-box
+        id="select-language"
+        [items]="languages"
+        [value]="languages[1]"
+        [width]="250"
+        (onValueChanged)="selectLanguage($event)"
+      >
+      </dx-select-box>
+    </div>
+  </div>
+</div>
+
+<dx-popup
+    [width]="600"
+    [height]="480"
+    [showTitle]="true"
+    title= "Stok Grup Oluştur/Düzenle"
+    [dragEnabled]="false"
+    [hideOnOutsideClick]="true"
+    [showCloseButton]="false"
+
+    [(visible)]="popupVisible"
+  >
+  <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="form-group">
+
+        <label class="mt-1">Stock Tipi</label>
+        <dx-select-box
+        displayExpr="code"
+        valueExpr="id"
+        [dataSource]="loadstcreate"
+        [(value)]=" selectedSg.stockTypeId"
+      >
+      </dx-select-box>
+
+
+        <label class="mt-1" >{{ 'Definitions::StockGroupCode' | abpLocalization }}</label>
+        <dx-text-box  class="form-control mt-1" [(value)]=" selectedSg.code" (onValueChanged)="editFormChanged($event)" ></dx-text-box>
+
+        <label class="mt-1">{{ 'Definitions::StockGroupName' | abpLocalization }}</label>
+        <dx-text-box class="form-control mt-1" [(value)]=" selectedSg.name "></dx-text-box>
+
+        <label class="mt-3 " >{{ 'Definitions::StockGroupParentId' | abpLocalization}}</label>
+        <dx-select-box
+        displayExpr="stockGroup.code"
+        valueExpr="stockGroup.id"
+        [dataSource]="loadstocktypelookupdatasource"
+        [(value)]=" selectedSg.parentId"
+      >
+      </dx-select-box>
+      </div>
+  </form>
+
+  <br>
+        <dx-button class="mt-1" style="float: right;" (onClick) = "save()" icon="check" >{{ 'Definitions::Kaydet' | abpLocalization}}</dx-button>
+        <dxo-position at="center" my="center" [of]="positionOf" collision="fit"></dxo-position>
+  </dx-popup>
+
+  <dx-popup [(visible)] = "popupdelete"
+            [width]="250"
+            [height]="200">
+      <p> {{ 'Definitions::SureToDelete' | abpLocalization }} </p>
+      <div >
+          <dx-button (onClick)="delete2()" class="dxdelete"> {{ 'Definitions::Sil' | abpLocalization}} </dx-button>
+          <dx-button (onClick) ="cancel()" class="dxcancel"> {{ 'Definitions::IptalEt' | abpLocalization}} </dx-button>
+    </div>
+  </dx-popup>
+
+<br>
+<br>
