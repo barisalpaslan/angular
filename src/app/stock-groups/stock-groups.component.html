@@ -2,7 +2,7 @@
   <dx-button class="btn btn-primary"
   (onClick)="createStockGroup()"
   icon="plus"
-  [style]="rtlEnabled ? 'margin-left:89%' : ''">{{ 'Definitions::CreateStockGroup' | abpLocalization}}</dx-button>
+  [style]="rtlEnabled ? 'margin-left:89%' : ''">{{ 'Definitions::CreateStockGroup' | abpLocalization }}</dx-button>
 </div>
 
 <br>
@@ -23,7 +23,6 @@
     </dx-select-box>
   </div>
 </div>
-
 <br>
 
 <dx-data-grid
@@ -39,22 +38,26 @@ key="id"
 
 id="dxdg"
 
-[paging] = "{enabled : selectedOption === 'paging'}"
+[paging] = "{enabled : selectedOption === 'paging' }"
 [pager]=  "{visible : selectedOption === 'paging'}"
 [scrolling]= "{mode : selectedOption === 'infinite' ? 'infinite' : 'standard'}"
 
+
 [rtlEnabled]="rtlEnabled"
+
+
 >
 
-<dxo-paging [pageSize]="6"></dxo-paging>
+<dxo-paging [pageSize]="3"></dxo-paging>
 
 <dxo-pager
 [visible]="true"
-[allowedPageSizes]="allowedPageSizes"
-[displayMode]="displayMode"
-[showPageSizeSelector]="showPageSizeSelector"
-[showInfo]="showInfo"
-[showNavigationButtons]="showNavButtons"
+[allowedPageSizes]="gridOptions.allowedPageSizes"
+[displayMode]="gridOptions.displayMode"
+[showPageSizeSelector]="gridOptions.showPageSizeSelector"
+[showInfo]="gridOptions.showInfo"
+[showNavigationButtons]="gridOptions.showNavButtons"
+
 
 >
 </dxo-pager>
@@ -107,8 +110,8 @@ id="dxdg"
         displayExpr="text"
         valueExpr="value"
         [items]="displayModes"
-        [(value)]="displayMode"
-        (valueChange)="changeGridOptions('displayModes', $event)"
+        [(value)]="gridOptions.displayMode"
+        (valueChange)="changeGridOptions('displayMode', $event)"
         [rtlEnabled]="rtlEnabled"
       >
       </dx-select-box>
@@ -117,7 +120,7 @@ id="dxdg"
       <dx-check-box
         id="showPageSizes"
         [text]="rtlEnabled ? 'Arapça Show Page Sizes' : 'Show Page Sizes'"
-        [(value)]="showPageSizeSelector"
+        [(value)]="gridOptions.showPageSizeSelector"
         (valueChange)="changeGridOptions('showPageSizeSelector', $event)"
         [rtlEnabled]="rtlEnabled"
       >

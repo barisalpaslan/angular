@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 import type { LoadResult } from '../../../dev-extreme/asp-net/data/response-model/models';
 import type { DataSourceLoadOptions } from '../shared/models';
 import { DevxAspNetDataService } from 'src/app/stock-groups/devx.service';
-import { StockGroupDto } from '../stock-groups';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -65,7 +64,7 @@ export class StockTypeService {
     },
     { apiName: this.apiName });
 
-    loadStockType = ()=> this.devexservice.aspnetDataWithoutKey('/api/Definitions/StockTypes/load-stock-types')
+    loadStockType = ()=> this.devexservice.aspnetDataWithoutKey('/api/Definitions/StockTypes/load-stock-types');
 
   constructor(private restService: RestService, private devexservice: DevxAspNetDataService) {}
 }

@@ -82,7 +82,17 @@ id="dxdg"
       <dxi-button [onClick]="getDeleteId" icon="trash"></dxi-button>
     </dxi-column>
 
-    <dxi-column dataField="id" caption="Id"  ></dxi-column>
+    <dxi-column dataField="id" [caption]="rtlEnabled ? 'Arapça Id' : 'Id'">
+      <!-- <dxo-header-filter>
+        <ng-template *ngIf="rtlEnabled; else elseBlock" >
+           {{"Definitions::CodeAr" | abpLocalization}}
+        </ng-template>
+        <ng-template #elseBlock> {{"Definitions::Code" | abpLocalization}}</ng-template>
+      </dxo-header-filter> -->
+    </dxi-column>
+
+    <!-- <dxi-column dataField="id" [caption]="rtlEnabled ?  'Definitions::CodeAr'  : 'Definitions::Code' "></dxi-column> -->
+
     <dxi-column dataField="code" [caption]="rtlEnabled ? 'الشفرة' : 'Code'" ></dxi-column>
     <dxi-column dataField="name" [caption]="rtlEnabled ? 'اسم' : 'Name'" ></dxi-column>
     <dxi-column dataField="allowMinusOpr" [caption]="rtlEnabled ? 'السماح ناقص الاوبرايتون' : 'AllowMinusOpr'" ></dxi-column>

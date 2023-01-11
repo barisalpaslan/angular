@@ -55,17 +55,32 @@ export class StockGroupsComponent implements OnInit {
   ]
 
   //paging
-  readonly allowedPageSizes = [3, 6, 9];
-  readonly displayModes = [{ text: "Display Mode 'full'", value: 'full' }, { text: "Display Mode 'compact'", value: 'compact' }];
-  displayMode = 'full';
-  showPageSizeSelector = true;
-  showInfo = true;
-  showNavButtons = true;
+  // readonly allowedPageSizes = [3, 6, 9];
+  // readonly displayModes = [{ text: "Display Mode 'full'", value: 'full' }, { text: "Display Mode 'compact'", value: 'compact' }];
+  // displayMode = 'full';
+  // showPageSizeSelector = true;
+  // showInfo = true;
+  // showNavButtons = true;
 
   //right to left
   languages: string[] = ['Arabic (Right-to-Left direction)', 'English (Left-to-Right direction)'];
   rtlEnabled = false;
   placeholder = 'Search...';
+
+
+  //paging özellikleri
+  displayModes = [{ text: "Display Mode 'full'", value: 'full' }, { text: "Display Mode 'compact'", value: 'compact' }]
+
+
+
+  gridOptions = {
+    displayMode : 'full',
+    allowedPageSizes: [3,6,9],
+    showPageSizeSelector : true,
+    showInfo : true,
+    showNavButtons : true
+ }
+
 
   constructor(public service:StockGroupService, public readonly list:ListService,
     private fb: FormBuilder)
@@ -76,7 +91,9 @@ export class StockGroupsComponent implements OnInit {
     this.loadStockGroups();
     this.loadStockTypes();
 
-this.readGridOptions();
+    this.readGridOptions();
+    //this.readStore();
+
   }
 
   loadStockGroups(){
@@ -87,67 +104,47 @@ this.readGridOptions();
     this.loadstcreate = this.service.loadStockType();
   }
 
-  gridOptions = {
-           allowedPageSizes : [3, 6, 9],
-            displayModes : [{ text: "Display Mode 'full'", value: 'full' }, { text: "Display Mode 'compact'", value: 'compact' }],
-            displayMode : 'full',
-            showPageSizeSelector : true,
-            showInfo : true,
-            showNavButtons : true
-         }
-
   saveGridOptions(){
-
    let serializedOptions = JSON.stringify(this.gridOptions);
-   // Özellikleri local storage'a kaydetme
    localStorage.setItem("gridOptions", serializedOptions);
-
    }
 
    readGridOptions(){
     let serializedOptions = localStorage.getItem("gridOptions");
 
-    if(serializedOptions){
-    this.gridOptions = JSON.parse(serializedOptions);
+    if(serializedOptions!=null){
+        this.gridOptions = JSON.parse(serializedOptions);
+        //tablo refresh..
+        this.dxStockGroup.instance.refresh();
     }else{
-      this.gridOptions;
+        this.gridOptions;
     }
    }
 
    changeGridOptions(option:string, value:any){
-    this.gridOptions[option] = value;
-
-    this.saveGridOptions();
+     this.gridOptions[option] = value;
+     this.saveGridOptions();
    }
 
+  //  storesize(){
+  //   debugger;
+  //   const size = JSON.stringify(this.allowedPageSizes);
+  //   localStorage.setItem("allowedPageSizes",size);
+  //  }
 
-//   loadToLS(){
-//     let gridOptions = {
-//        allowedPageSizes : [3, 6, 9],
-//         displayModes : [{ text: "Display Mode 'full'", value: 'full' }, { text: "Display Mode 'compact'", value: 'compact' }],
-//         displayMode : 'full',
-//         showPageSizeSelector : true,
-//         showInfo : true,
-//         showNavButtons : true
-//      }
+  //  changeStore(option:string, value:any){
+  //   debugger;
+  //   this.allowedPageSizes[option] = value;
+  //   this.storesize();
+  //  }
 
-//     let items = [];
-//     items.push(gridOptions);
-//     localStorage.setItem("items",JSON.stringify("items"));
+  //  readStore(){
+  //   debugger;
+  //   const store = localStorage.getItem("allowedPageSizes");
+  //   this.allowedPageSizes = JSON.parse(store);
+  //   console.log(this.allowedPageSizes);
+  //  }
 
-// }
-
-//    loadFromLS(){
-//     let items : any = [];
-
-//     let value = localStorage.getItem(items);
-
-//     if(value != null){
-//       items = JSON.parse(value);
-//     }
-
-//     return items;
-//    }
 
   //right to left
   selectLanguage(data) {
@@ -175,7 +172,7 @@ this.readGridOptions();
   }
 
   get isCompactMode() {
-    return this.displayMode === 'compact';
+    return this.gridOptions.displayMode === 'compact';
   }
 
   //Dx Elementleri ile custom popup

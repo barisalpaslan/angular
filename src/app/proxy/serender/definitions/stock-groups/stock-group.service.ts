@@ -72,7 +72,7 @@ export class StockGroupService {
     { apiName: this.apiName });
 
 
-  update = (id: string, input: UpdateStockGroupDto) :Observable<any>=>
+  update = (id: string, input: UpdateStockGroupDto):Observable<any> =>
     this.restService.request<any, void>({
       method: 'PUT',
       url: `/api/app/stock-group/${id}`,
@@ -80,12 +80,9 @@ export class StockGroupService {
     },
     { apiName: this.apiName });
 
-    //loadStockGroup= ()=> this.devexservice.aspnetDataWithoutKey('/api/Definitions/StockGroups/load-stock-groups');
+    loadStockGroup2 = () => this.devexservice.aspnetDataWithoutKey('/api/Definitions/StockGroups/load-stock-groups2');
 
-
-   loadStockGroup2 = () => this.devexservice.aspnetDataWithoutKey('/api/Definitions/StockGroups/load-stock-groups2');
-
-   loadStockType = () => this.devexservice.aspnetDataWithoutKey('/api/Definitions/StockTypes/load-stock-types');
+    loadStockType = () => this.devexservice.aspnetDataWithoutKey('/api/Definitions/StockTypes/load-stock-types');
 
   constructor(private restService: RestService, private devexservice: DevxAspNetDataService) {}
 }
