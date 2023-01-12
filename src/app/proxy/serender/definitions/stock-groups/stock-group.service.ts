@@ -14,7 +14,7 @@ export class StockGroupService {
   apiName = 'Default';
 
 
-  create = (input: CreateStockGroupDto):Observable<StockGroupDto> =>
+  create = (input: CreateStockGroupDto) :Observable<StockGroupDto> =>
     this.restService.request<any, StockGroupDto>({
       method: 'POST',
       url: '/api/app/stock-group',
@@ -72,7 +72,7 @@ export class StockGroupService {
     { apiName: this.apiName });
 
 
-  update = (id: string, input: UpdateStockGroupDto):Observable<any> =>
+  update = (id: string, input: UpdateStockGroupDto) :Observable<any> =>
     this.restService.request<any, void>({
       method: 'PUT',
       url: `/api/app/stock-group/${id}`,
@@ -84,5 +84,5 @@ export class StockGroupService {
 
     loadStockType = () => this.devexservice.aspnetDataWithoutKey('/api/Definitions/StockTypes/load-stock-types');
 
-  constructor(private restService: RestService, private devexservice: DevxAspNetDataService) {}
+  constructor(private restService: RestService, private devexservice:DevxAspNetDataService) {}
 }

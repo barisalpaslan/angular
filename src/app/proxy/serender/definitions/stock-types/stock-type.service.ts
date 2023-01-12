@@ -4,8 +4,8 @@ import type { PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
 import type { LoadResult } from '../../../dev-extreme/asp-net/data/response-model/models';
 import type { DataSourceLoadOptions } from '../shared/models';
-import { DevxAspNetDataService } from 'src/app/stock-groups/devx.service';
 import { Observable } from 'rxjs';
+import { DevxAspNetDataService } from 'src/app/stock-groups/devx.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class StockTypeService {
   apiName = 'Default';
 
 
-  create = (input: CreateStockTypeDto):Observable<StockTypeDto> =>
+  create = (input: CreateStockTypeDto) :Observable<StockTypeDto> =>
     this.restService.request<any, StockTypeDto>({
       method: 'POST',
       url: '/api/app/stock-type',
@@ -56,7 +56,7 @@ export class StockTypeService {
     { apiName: this.apiName });
 
 
-  update = (id: string, input: UpdateStockTypeDto):Observable<any> =>
+  update = (id: string, input: UpdateStockTypeDto) :Observable<any> =>
     this.restService.request<any, void>({
       method: 'PUT',
       url: `/api/app/stock-type/${id}`,
@@ -66,5 +66,6 @@ export class StockTypeService {
 
     loadStockType = ()=> this.devexservice.aspnetDataWithoutKey('/api/Definitions/StockTypes/load-stock-types');
 
-  constructor(private restService: RestService, private devexservice: DevxAspNetDataService) {}
+
+  constructor(private restService: RestService, private devexservice:DevxAspNetDataService) {}
 }

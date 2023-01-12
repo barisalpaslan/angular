@@ -82,7 +82,7 @@ id="dxdg"
       <dxi-button [onClick]="getDeleteId" icon="trash"></dxi-button>
     </dxi-column>
 
-    <dxi-column dataField="id" [caption]="rtlEnabled ? 'Arapça Id' : 'Id'">
+    <dxi-column dataField="id" caption="{{ (rtlEnabled ? 'Definitions::StIdEn' : 'Definitions::StIdTr') | abpLocalization }}">
       <!-- <dxo-header-filter>
         <ng-template *ngIf="rtlEnabled; else elseBlock" >
            {{"Definitions::CodeAr" | abpLocalization}}

@@ -24,7 +24,8 @@ export class StockGroupsComponent implements OnInit {
 
   loadstockgroupdatasource:any;
 
-  loadstocktypelookupdatasource:any;
+  array : any[] = [];
+  loadstocktypelookupdatasource;
   loadstcreate:any;
 
   isModalOpen = false;
@@ -47,6 +48,9 @@ export class StockGroupsComponent implements OnInit {
   positionOf: string;
   popupdelete = false;
 
+  propsIndex:number = 0;
+  languageIndex:number;
+
   //scrolling or paging
   selectedOption: string = 'paging';
   props = [
@@ -64,23 +68,24 @@ export class StockGroupsComponent implements OnInit {
 
   //right to left
   languages: string[] = ['Arabic (Right-to-Left direction)', 'English (Left-to-Right direction)'];
-  rtlEnabled = false;
-  placeholder = 'Search...';
+  //rtlEnabled = false;
+  // languages = [{text : 'Arabic (Right-to-Left direction)', value:'arabic'},{text : 'English (Left-to-Right direction)', value:'eng'}];
 
 
   //paging özellikleri
   displayModes = [{ text: "Display Mode 'full'", value: 'full' }, { text: "Display Mode 'compact'", value: 'compact' }]
-
+  allowedPageSizes:number[] = [3,6,9]
 
 
   gridOptions = {
     displayMode : 'full',
-    allowedPageSizes: [3,6,9],
+    allowedPageSize : 3,
     showPageSizeSelector : true,
     showInfo : true,
-    showNavButtons : true
+    showNavButtons : true,
+    placeholder : 'Search...',
+    rtlEnabled : false,
  }
-
 
   constructor(public service:StockGroupService, public readonly list:ListService,
     private fb: FormBuilder)
@@ -92,7 +97,6 @@ export class StockGroupsComponent implements OnInit {
     this.loadStockTypes();
 
     this.readGridOptions();
-    //this.readStore();
 
   }
 
@@ -104,52 +108,63 @@ export class StockGroupsComponent implements OnInit {
     this.loadstcreate = this.service.loadStockType();
   }
 
+  // disableSorting(){
+  //   this.dxStockGroup.allowSorting = false;
+  // }
+
   saveGridOptions(){
    let serializedOptions = JSON.stringify(this.gridOptions);
    localStorage.setItem("gridOptions", serializedOptions);
-   }
+  }
 
-   readGridOptions(){
+  readGridOptions(){
     let serializedOptions = localStorage.getItem("gridOptions");
+    // let propIndex = localStorage.getItem("propsIndex");
+    // if(propIndex != null){
+    //     this.propsIndex = parseInt(propIndex);
+    // }
 
     if(serializedOptions!=null){
         this.gridOptions = JSON.parse(serializedOptions);
         //tablo refresh..
-        this.dxStockGroup.instance.refresh();
+        //this.dxStockGroup.instance.refresh();
     }else{
         this.gridOptions;
     }
-   }
+  }
 
-   changeGridOptions(option:string, value:any){
+  changeGridOptions(option:string, value:any){
      this.gridOptions[option] = value;
      this.saveGridOptions();
-   }
-
-  //  storesize(){
-  //   debugger;
-  //   const size = JSON.stringify(this.allowedPageSizes);
-  //   localStorage.setItem("allowedPageSizes",size);
-  //  }
-
-  //  changeStore(option:string, value:any){
-  //   debugger;
-  //   this.allowedPageSizes[option] = value;
-  //   this.storesize();
-  //  }
-
-  //  readStore(){
-  //   debugger;
-  //   const store = localStorage.getItem("allowedPageSizes");
-  //   this.allowedPageSizes = JSON.parse(store);
-  //   console.log(this.allowedPageSizes);
-  //  }
-
+  }
 
   //right to left
   selectLanguage(data) {
-    this.rtlEnabled = data.value === this.languages[0];
-    this.placeholder = this.rtlEnabled ? 'بحث' : 'Search...';
+    this.gridOptions.rtlEnabled = data.value === this.languages[0];
+    this.gridOptions.placeholder = this.gridOptions.rtlEnabled ? 'بحث' : 'Search...';
+    this.saveGridOptions();
+
+  }
+
+  // paging or scrolling
+  onOptionChange() {
+
+    if (this.selectedOption === 'paging') {
+      this.dxStockGroup.instance.option('paging', { enabled: true });
+      this.dxStockGroup.instance.option('scrolling', { mode: 'standard' });
+      // this.propsIndex = 0;
+      // localStorage.setItem("propsIndex",this.propsIndex.toString());
+
+    } else {
+      this.dxStockGroup.instance.option('paging', { enabled: false });
+      this.dxStockGroup.instance.option('scrolling', { mode: 'infinite' });
+      // this.propsIndex = 1;
+      // localStorage.setItem("propsIndex",this.propsIndex.toString());
+    }
+  }
+
+  get isCompactMode() {
+    return this.gridOptions.displayMode === 'compact';
   }
 
   //counter
@@ -157,22 +172,6 @@ export class StockGroupsComponent implements OnInit {
     this.count = this.dxStockGroup.instance.totalCount();
     this.countChange.emit(this.count);
    // console.log(this.count);
-  }
-
-  // paging or scrolling
-  onOptionChange() {
-    if (this.selectedOption === 'paging') {
-      this.dxStockGroup.instance.option('paging', { enabled: true });
-      this.dxStockGroup.instance.option('scrolling', { mode: 'standard' });
-    } else {
-      this.dxStockGroup.instance.option('paging', { enabled: false });
-      this.dxStockGroup.instance.option('scrolling', { mode: 'infinite' });
-
-    }
-  }
-
-  get isCompactMode() {
-    return this.gridOptions.displayMode === 'compact';
   }
 
   //Dx Elementleri ile custom popup

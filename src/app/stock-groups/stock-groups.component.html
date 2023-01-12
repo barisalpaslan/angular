@@ -2,23 +2,22 @@
   <dx-button class="btn btn-primary"
   (onClick)="createStockGroup()"
   icon="plus"
-  [style]="rtlEnabled ? 'margin-left:89%' : ''">{{ 'Definitions::CreateStockGroup' | abpLocalization }}</dx-button>
+  [style]="gridOptions.rtlEnabled ? 'margin-left:89%' : ''">{{ 'Definitions::CreateStockGroup' | abpLocalization }}</dx-button>
 </div>
 
 <br>
 <div class="row">
   <div class="col md-8">
-      <h5> {{rtlEnabled ? 'العدد الإجمالي للبيانات' : 'Toplam veri sayisi'}}  : {{count}}</h5>
+      <h5> {{gridOptions.rtlEnabled ? 'العدد الإجمالي للبيانات' : 'Toplam veri sayisi'}}  : {{count}}</h5>
   </div>
   <div class="col md-4" class="dxselectbox">
     <dx-select-box [(ngModel)]="selectedOption"
     [items]="props"
-    [value]="props[0]"
+    [value]="props[propsIndex]"
     (ngModelChange)="onOptionChange()"
     valueExpr="value"
     displayExpr="text"
-
-    [rtlEnabled]="rtlEnabled"
+    [rtlEnabled]="gridOptions.rtlEnabled"
     >
     </dx-select-box>
   </div>
@@ -43,21 +42,22 @@ id="dxdg"
 [scrolling]= "{mode : selectedOption === 'infinite' ? 'infinite' : 'standard'}"
 
 
-[rtlEnabled]="rtlEnabled"
+[rtlEnabled]="gridOptions.rtlEnabled"
 
 
 >
 
-<dxo-paging [pageSize]="3"></dxo-paging>
+<dxo-paging [(pageSize)]="gridOptions.allowedPageSize"
+(pageSizeChange)="changeGridOptions('allowedPageSize', $event)"
+></dxo-paging>
 
 <dxo-pager
 [visible]="true"
-[allowedPageSizes]="gridOptions.allowedPageSizes"
+[allowedPageSizes]="allowedPageSizes"
 [displayMode]="gridOptions.displayMode"
 [showPageSizeSelector]="gridOptions.showPageSizeSelector"
 [showInfo]="gridOptions.showInfo"
 [showNavigationButtons]="gridOptions.showNavButtons"
-
 
 >
 </dxo-pager>
@@ -66,17 +66,16 @@ id="dxdg"
   <dxi-total-item class="totalitem" column="Code" summaryType="count"></dxi-total-item>
 </dxo-summary> -->
 
-  <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
 
-  <dxo-load-panel [enabled]="false"></dxo-load-panel>
-  <dxo-scrolling mode="infinite"></dxo-scrolling>
-  <dxo-sorting mode="none"></dxo-sorting>
-
+    <dxo-load-panel [enabled]="false"></dxo-load-panel>
+    <dxo-scrolling mode="infinite"></dxo-scrolling>
+    <dxo-sorting mode="none"></dxo-sorting>
 
     <dxo-search-panel
       [visible]="true"
       [highlightCaseSensitive]="true"
-      [placeholder]="placeholder"
+      [placeholder]="gridOptions.placeholder"
     ></dxo-search-panel>
 
     <dxi-column type="buttons">
@@ -84,11 +83,11 @@ id="dxdg"
       <dxi-button [onClick]="getDeleteId" icon="trash"></dxi-button>
     </dxi-column>
 
-    <dxi-column dataField="stockGroup.id" caption="Id" ></dxi-column>
-    <dxi-column dataField="stockType.code" caption="Stock Type" ></dxi-column>
-    <dxi-column dataField="stockGroup.code" caption="Code" ></dxi-column>
-    <dxi-column dataField="stockGroup.name" caption="Name" ></dxi-column>
-    <dxi-column dataField="stockGroup.parentId" caption="ParentId" >
+    <dxi-column  dataField="stockGroup.id" caption="Id" ></dxi-column>
+    <dxi-column allowSorting="false" dataField="stockType.code" caption="Stock Type" ></dxi-column>
+    <dxi-column  dataField="stockGroup.code" caption="Code" ></dxi-column>
+    <dxi-column  dataField="stockGroup.name" caption="Name" ></dxi-column>
+    <dxi-column  dataField="stockGroup.parentId" caption="ParentId" >
       <dxo-lookup
             [dataSource]="loadstocktypelookupdatasource"
             valueExpr="stockGroup.id"
@@ -102,7 +101,7 @@ id="dxdg"
 
 <!-- Paging Options -->
 <div class="options">
-  <div class="caption" [style]="rtlEnabled ? 'margin-left:94%' : ''">Options</div>
+  <div class="caption" [style]="gridOptions.rtlEnabled ? 'margin-left:94%' : ''">Options</div>
   <div class="option-container">
     <div class="option" >
       <dx-select-box
@@ -112,36 +111,36 @@ id="dxdg"
         [items]="displayModes"
         [(value)]="gridOptions.displayMode"
         (valueChange)="changeGridOptions('displayMode', $event)"
-        [rtlEnabled]="rtlEnabled"
+        [rtlEnabled]="gridOptions.rtlEnabled"
       >
       </dx-select-box>
     </div>
     <div class="option">
       <dx-check-box
         id="showPageSizes"
-        [text]="rtlEnabled ? 'Arapça Show Page Sizes' : 'Show Page Sizes'"
+        [text]="gridOptions.rtlEnabled ? 'Arapça Show Page Sizes' : 'Show Page Sizes'"
         [(value)]="gridOptions.showPageSizeSelector"
         (valueChange)="changeGridOptions('showPageSizeSelector', $event)"
-        [rtlEnabled]="rtlEnabled"
+        [rtlEnabled]="gridOptions.rtlEnabled"
       >
       </dx-check-box>
     </div>
     <div class="option" >
       <dx-check-box id="showInfo"
-      [text]="rtlEnabled ? 'Arapça Show Info Text' : 'Show Info Text'"
+      [text]="gridOptions.rtlEnabled ? 'Arapça Show Info Text' : 'Show Info Text'"
       [(value)]="gridOptions.showInfo"
       (valueChange)="changeGridOptions('showInfo', $event)"
-      [rtlEnabled]="rtlEnabled">
+      [rtlEnabled]="gridOptions.rtlEnabled">
       </dx-check-box>
     </div>
     <div class="option" >
       <dx-check-box
         id="showNavButtons"
-        [text]="rtlEnabled ? 'Arapça Show Nav But.' : 'Show Nav Buttons'"
+        [text]="gridOptions.rtlEnabled ? 'Arapça Show Nav But.' : 'Show Nav Buttons'"
         [disabled]="isCompactMode"
         [(value)]="gridOptions.showNavButtons"
         (valueChange)="changeGridOptions('showNavButtons', $event)"
-        [rtlEnabled]="rtlEnabled"
+        [rtlEnabled]="gridOptions.rtlEnabled"
       >
       </dx-check-box>
     </div>
@@ -155,6 +154,7 @@ id="dxdg"
         (onValueChanged)="selectLanguage($event)"
       >
       </dx-select-box>
+
     </div>
   </div>
 </div>
@@ -181,7 +181,6 @@ id="dxdg"
         [(value)]=" selectedSg.stockTypeId"
       >
       </dx-select-box>
-
 
         <label class="mt-1" >{{ 'Definitions::StockGroupCode' | abpLocalization }}</label>
         <dx-text-box  class="form-control mt-1" [(value)]=" selectedSg.code" (onValueChanged)="editFormChanged($event)" ></dx-text-box>

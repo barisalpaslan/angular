@@ -3,940 +3,6 @@
     "app"
   ],
   "modules": {
-    "definitions": {
-      "rootPath": "definitions",
-      "remoteServiceName": "Definitions",
-      "controllers": {
-        "Serender.Definitions.Users.UserController": {
-          "controllerName": "User",
-          "controllerGroupName": "User",
-          "isRemoteService": true,
-          "apiVersion": null,
-          "type": "Serender.Definitions.Users.UserController",
-          "interfaces": [
-            {
-              "type": "Serender.Definitions.Users.IUserAppService"
-            }
-          ],
-          "actions": {
-            "GetAsyncById": {
-              "uniqueName": "GetAsyncById",
-              "name": "GetAsync",
-              "httpMethod": "GET",
-              "url": "api/Definitions/Users",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Serender.Definitions.Users.UserDto",
-                "typeSimple": "Serender.Definitions.Users.UserDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.Users.IUserAppService"
-            },
-            "GetListAsyncByInput": {
-              "uniqueName": "GetListAsyncByInput",
-              "name": "GetListAsync",
-              "httpMethod": "GET",
-              "url": "api/Definitions/Users/get",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Serender.Definitions.Users.GetUserListDto, Serender.Definitions.Application.Contracts",
-                  "type": "Serender.Definitions.Users.GetUserListDto",
-                  "typeSimple": "Serender.Definitions.Users.GetUserListDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "Filter",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "Sorting",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "SkipCount",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "MaxResultCount",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.Users.UserDto>",
-                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.Users.UserDto>"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.Users.IUserAppService"
-            },
-            "CreateAsyncByInput": {
-              "uniqueName": "CreateAsyncByInput",
-              "name": "CreateAsync",
-              "httpMethod": "POST",
-              "url": "api/Definitions/Users/create",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Serender.Definitions.Users.CreateUserDto, Serender.Definitions.Application.Contracts",
-                  "type": "Serender.Definitions.Users.CreateUserDto",
-                  "typeSimple": "Serender.Definitions.Users.CreateUserDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "Serender.Definitions.Users.CreateUserDto",
-                  "typeSimple": "Serender.Definitions.Users.CreateUserDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Serender.Definitions.Users.UserDto",
-                "typeSimple": "Serender.Definitions.Users.UserDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.Users.IUserAppService"
-            },
-            "UpdateAsyncByIdAndInput": {
-              "uniqueName": "UpdateAsyncByIdAndInput",
-              "name": "UpdateAsync",
-              "httpMethod": "PUT",
-              "url": "api/Definitions/Users/update",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                },
-                {
-                  "name": "input",
-                  "typeAsString": "Serender.Definitions.Users.UpdateUserDto, Serender.Definitions.Application.Contracts",
-                  "type": "Serender.Definitions.Users.UpdateUserDto",
-                  "typeSimple": "Serender.Definitions.Users.UpdateUserDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "Serender.Definitions.Users.UpdateUserDto",
-                  "typeSimple": "Serender.Definitions.Users.UpdateUserDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.Users.IUserAppService"
-            },
-            "DeleteAsyncById": {
-              "uniqueName": "DeleteAsyncById",
-              "name": "DeleteAsync",
-              "httpMethod": "DELETE",
-              "url": "api/Definitions/Users/delete",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.Users.IUserAppService"
-            },
-            "LoadUsersByLoadOptions": {
-              "uniqueName": "LoadUsersByLoadOptions",
-              "name": "LoadUsers",
-              "httpMethod": "GET",
-              "url": "api/Definitions/Users/load-users",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "loadOptions",
-                  "typeAsString": "Serender.Definitions.Shared.DataSourceLoadOptions, Serender.Definitions.Domain.Shared",
-                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "loadOptions",
-                  "name": "loadOptions",
-                  "jsonName": null,
-                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Custom",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "DevExtreme.AspNet.Data.ResponseModel.LoadResult",
-                "typeSimple": "DevExtreme.AspNet.Data.ResponseModel.LoadResult"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.Users.IUserAppService"
-            }
-          }
-        },
-        "Serender.Definitions.StockTypes.StockTypeController": {
-          "controllerName": "StockType",
-          "controllerGroupName": "StockType",
-          "isRemoteService": true,
-          "apiVersion": null,
-          "type": "Serender.Definitions.StockTypes.StockTypeController",
-          "interfaces": [
-            {
-              "type": "Serender.Definitions.StockTypes.IStockTypeAppService"
-            }
-          ],
-          "actions": {
-            "GetAsyncById": {
-              "uniqueName": "GetAsyncById",
-              "name": "GetAsync",
-              "httpMethod": "GET",
-              "url": "api/Definitions/StockTypes",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Serender.Definitions.StockTypes.StockTypeDto",
-                "typeSimple": "Serender.Definitions.StockTypes.StockTypeDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
-            },
-            "GetListAsyncByInput": {
-              "uniqueName": "GetListAsyncByInput",
-              "name": "GetListAsync",
-              "httpMethod": "GET",
-              "url": "api/Definitions/StockTypes/get",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Serender.Definitions.StockTypes.GetStockTypeListDto, Serender.Definitions.Application.Contracts",
-                  "type": "Serender.Definitions.StockTypes.GetStockTypeListDto",
-                  "typeSimple": "Serender.Definitions.StockTypes.GetStockTypeListDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "Filter",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "Sorting",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "SkipCount",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "MaxResultCount",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.StockTypes.StockTypeDto>",
-                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.StockTypes.StockTypeDto>"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
-            },
-            "CreateAsyncByInput": {
-              "uniqueName": "CreateAsyncByInput",
-              "name": "CreateAsync",
-              "httpMethod": "POST",
-              "url": "api/Definitions/StockTypes/create",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Serender.Definitions.StockTypes.CreateStockTypeDto, Serender.Definitions.Application.Contracts",
-                  "type": "Serender.Definitions.StockTypes.CreateStockTypeDto",
-                  "typeSimple": "Serender.Definitions.StockTypes.CreateStockTypeDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "Serender.Definitions.StockTypes.CreateStockTypeDto",
-                  "typeSimple": "Serender.Definitions.StockTypes.CreateStockTypeDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Serender.Definitions.StockTypes.StockTypeDto",
-                "typeSimple": "Serender.Definitions.StockTypes.StockTypeDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
-            },
-            "UpdateAsyncByIdAndInput": {
-              "uniqueName": "UpdateAsyncByIdAndInput",
-              "name": "UpdateAsync",
-              "httpMethod": "PUT",
-              "url": "api/Definitions/StockTypes/update",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                },
-                {
-                  "name": "input",
-                  "typeAsString": "Serender.Definitions.StockTypes.UpdateStockTypeDto, Serender.Definitions.Application.Contracts",
-                  "type": "Serender.Definitions.StockTypes.UpdateStockTypeDto",
-                  "typeSimple": "Serender.Definitions.StockTypes.UpdateStockTypeDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "Serender.Definitions.StockTypes.UpdateStockTypeDto",
-                  "typeSimple": "Serender.Definitions.StockTypes.UpdateStockTypeDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
-            },
-            "DeleteAsyncById": {
-              "uniqueName": "DeleteAsyncById",
-              "name": "DeleteAsync",
-              "httpMethod": "DELETE",
-              "url": "api/Definitions/StockTypes/delete",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
-            },
-            "LoadStockTypesByLoadOptions": {
-              "uniqueName": "LoadStockTypesByLoadOptions",
-              "name": "LoadStockTypes",
-              "httpMethod": "GET",
-              "url": "api/Definitions/StockTypes/load-stock-types",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "loadOptions",
-                  "typeAsString": "Serender.Definitions.Shared.DataSourceLoadOptions, Serender.Definitions.Domain.Shared",
-                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "loadOptions",
-                  "name": "loadOptions",
-                  "jsonName": null,
-                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Custom",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "DevExtreme.AspNet.Data.ResponseModel.LoadResult",
-                "typeSimple": "DevExtreme.AspNet.Data.ResponseModel.LoadResult"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
-            }
-          }
-        },
-        "Serender.Definitions.StockGroups.StockGroupController": {
-          "controllerName": "StockGroup",
-          "controllerGroupName": "StockGroup",
-          "isRemoteService": true,
-          "apiVersion": null,
-          "type": "Serender.Definitions.StockGroups.StockGroupController",
-          "interfaces": [
-            {
-              "type": "Serender.Definitions.StockGroups.IStockGroupAppService"
-            }
-          ],
-          "actions": {
-            "GetAsyncById": {
-              "uniqueName": "GetAsyncById",
-              "name": "GetAsync",
-              "httpMethod": "GET",
-              "url": "api/Definitions/StockGroups",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Serender.Definitions.StockGroups.StockGroupDto",
-                "typeSimple": "Serender.Definitions.StockGroups.StockGroupDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
-            },
-            "GetListAsyncByInput": {
-              "uniqueName": "GetListAsyncByInput",
-              "name": "GetListAsync",
-              "httpMethod": "GET",
-              "url": "api/Definitions/StockGroups/get",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Serender.Definitions.StockGroups.GetStockGroupListDto, Serender.Definitions.Application.Contracts",
-                  "type": "Serender.Definitions.StockGroups.GetStockGroupListDto",
-                  "typeSimple": "Serender.Definitions.StockGroups.GetStockGroupListDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "Filter",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "Sorting",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "SkipCount",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "MaxResultCount",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.StockGroups.StockGroupDto>",
-                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.StockGroups.StockGroupDto>"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
-            },
-            "CreateAsyncByInput": {
-              "uniqueName": "CreateAsyncByInput",
-              "name": "CreateAsync",
-              "httpMethod": "POST",
-              "url": "api/Definitions/StockGroups/create",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Serender.Definitions.StockGroups.CreateStockGroupDto, Serender.Definitions.Application.Contracts",
-                  "type": "Serender.Definitions.StockGroups.CreateStockGroupDto",
-                  "typeSimple": "Serender.Definitions.StockGroups.CreateStockGroupDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "Serender.Definitions.StockGroups.CreateStockGroupDto",
-                  "typeSimple": "Serender.Definitions.StockGroups.CreateStockGroupDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Serender.Definitions.StockGroups.StockGroupDto",
-                "typeSimple": "Serender.Definitions.StockGroups.StockGroupDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
-            },
-            "UpdateAsyncByIdAndInput": {
-              "uniqueName": "UpdateAsyncByIdAndInput",
-              "name": "UpdateAsync",
-              "httpMethod": "PUT",
-              "url": "api/Definitions/StockGroups/update",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                },
-                {
-                  "name": "input",
-                  "typeAsString": "Serender.Definitions.StockGroups.UpdateStockGroupDto, Serender.Definitions.Application.Contracts",
-                  "type": "Serender.Definitions.StockGroups.UpdateStockGroupDto",
-                  "typeSimple": "Serender.Definitions.StockGroups.UpdateStockGroupDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "Serender.Definitions.StockGroups.UpdateStockGroupDto",
-                  "typeSimple": "Serender.Definitions.StockGroups.UpdateStockGroupDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
-            },
-            "DeleteAsyncById": {
-              "uniqueName": "DeleteAsyncById",
-              "name": "DeleteAsync",
-              "httpMethod": "DELETE",
-              "url": "api/Definitions/StockGroups/delete",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Void",
-                "typeSimple": "System.Void"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
-            },
-            "GetStockTypeLookupAsync": {
-              "uniqueName": "GetStockTypeLookupAsync",
-              "name": "GetStockTypeLookupAsync",
-              "httpMethod": "GET",
-              "url": "api/Definitions/StockGroups/get-stock-type-lookup",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "Volo.Abp.Application.Dtos.ListResultDto<Serender.Definitions.StockGroups.StockTypeLookupDto>",
-                "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Serender.Definitions.StockGroups.StockTypeLookupDto>"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
-            },
-            "LoadStockGroupsByLoadOptions": {
-              "uniqueName": "LoadStockGroupsByLoadOptions",
-              "name": "LoadStockGroups",
-              "httpMethod": "GET",
-              "url": "api/Definitions/StockGroups/load-stock-groups",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "loadOptions",
-                  "typeAsString": "Serender.Definitions.Shared.DataSourceLoadOptions, Serender.Definitions.Domain.Shared",
-                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "loadOptions",
-                  "name": "loadOptions",
-                  "jsonName": null,
-                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Custom",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "DevExtreme.AspNet.Data.ResponseModel.LoadResult",
-                "typeSimple": "DevExtreme.AspNet.Data.ResponseModel.LoadResult"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
-            },
-            "LoadStockGroups2ByLoadOptions": {
-              "uniqueName": "LoadStockGroups2ByLoadOptions",
-              "name": "LoadStockGroups2",
-              "httpMethod": "GET",
-              "url": "api/Definitions/StockGroups/load-stock-groups2",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "loadOptions",
-                  "typeAsString": "Serender.Definitions.Shared.DataSourceLoadOptions, Serender.Definitions.Domain.Shared",
-                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "loadOptions",
-                  "name": "loadOptions",
-                  "jsonName": null,
-                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Custom",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "DevExtreme.AspNet.Data.ResponseModel.LoadResult",
-                "typeSimple": "DevExtreme.AspNet.Data.ResponseModel.LoadResult"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
-            }
-          }
-        }
-      }
-    },
     "app": {
       "rootPath": "app",
       "remoteServiceName": "Default",
@@ -2116,6 +1182,940 @@
               },
               "allowAnonymous": null,
               "implementFrom": "Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "rootPath": "definitions",
+      "remoteServiceName": "Definitions",
+      "controllers": {
+        "Serender.Definitions.Users.UserController": {
+          "controllerName": "User",
+          "controllerGroupName": "User",
+          "isRemoteService": true,
+          "apiVersion": null,
+          "type": "Serender.Definitions.Users.UserController",
+          "interfaces": [
+            {
+              "type": "Serender.Definitions.Users.IUserAppService"
+            }
+          ],
+          "actions": {
+            "GetAsyncById": {
+              "uniqueName": "GetAsyncById",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/Definitions/Users",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Serender.Definitions.Users.UserDto",
+                "typeSimple": "Serender.Definitions.Users.UserDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.Users.IUserAppService"
+            },
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/Definitions/Users/get",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Serender.Definitions.Users.GetUserListDto, Serender.Definitions.Application.Contracts",
+                  "type": "Serender.Definitions.Users.GetUserListDto",
+                  "typeSimple": "Serender.Definitions.Users.GetUserListDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Filter",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Sorting",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.Users.UserDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.Users.UserDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.Users.IUserAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/Definitions/Users/create",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Serender.Definitions.Users.CreateUserDto, Serender.Definitions.Application.Contracts",
+                  "type": "Serender.Definitions.Users.CreateUserDto",
+                  "typeSimple": "Serender.Definitions.Users.CreateUserDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Serender.Definitions.Users.CreateUserDto",
+                  "typeSimple": "Serender.Definitions.Users.CreateUserDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Serender.Definitions.Users.UserDto",
+                "typeSimple": "Serender.Definitions.Users.UserDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.Users.IUserAppService"
+            },
+            "UpdateAsyncByIdAndInput": {
+              "uniqueName": "UpdateAsyncByIdAndInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/Definitions/Users/update",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Serender.Definitions.Users.UpdateUserDto, Serender.Definitions.Application.Contracts",
+                  "type": "Serender.Definitions.Users.UpdateUserDto",
+                  "typeSimple": "Serender.Definitions.Users.UpdateUserDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Serender.Definitions.Users.UpdateUserDto",
+                  "typeSimple": "Serender.Definitions.Users.UpdateUserDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.Users.IUserAppService"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/Definitions/Users/delete",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.Users.IUserAppService"
+            },
+            "LoadUsersByLoadOptions": {
+              "uniqueName": "LoadUsersByLoadOptions",
+              "name": "LoadUsers",
+              "httpMethod": "GET",
+              "url": "api/Definitions/Users/load-users",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "loadOptions",
+                  "typeAsString": "Serender.Definitions.Shared.DataSourceLoadOptions, Serender.Definitions.Domain.Shared",
+                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "loadOptions",
+                  "name": "loadOptions",
+                  "jsonName": null,
+                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Custom",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "DevExtreme.AspNet.Data.ResponseModel.LoadResult",
+                "typeSimple": "DevExtreme.AspNet.Data.ResponseModel.LoadResult"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.Users.IUserAppService"
+            }
+          }
+        },
+        "Serender.Definitions.StockTypes.StockTypeController": {
+          "controllerName": "StockType",
+          "controllerGroupName": "StockType",
+          "isRemoteService": true,
+          "apiVersion": null,
+          "type": "Serender.Definitions.StockTypes.StockTypeController",
+          "interfaces": [
+            {
+              "type": "Serender.Definitions.StockTypes.IStockTypeAppService"
+            }
+          ],
+          "actions": {
+            "GetAsyncById": {
+              "uniqueName": "GetAsyncById",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/Definitions/StockTypes",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Serender.Definitions.StockTypes.StockTypeDto",
+                "typeSimple": "Serender.Definitions.StockTypes.StockTypeDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
+            },
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/Definitions/StockTypes/get",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Serender.Definitions.StockTypes.GetStockTypeListDto, Serender.Definitions.Application.Contracts",
+                  "type": "Serender.Definitions.StockTypes.GetStockTypeListDto",
+                  "typeSimple": "Serender.Definitions.StockTypes.GetStockTypeListDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Filter",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Sorting",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.StockTypes.StockTypeDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.StockTypes.StockTypeDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/Definitions/StockTypes/create",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Serender.Definitions.StockTypes.CreateStockTypeDto, Serender.Definitions.Application.Contracts",
+                  "type": "Serender.Definitions.StockTypes.CreateStockTypeDto",
+                  "typeSimple": "Serender.Definitions.StockTypes.CreateStockTypeDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Serender.Definitions.StockTypes.CreateStockTypeDto",
+                  "typeSimple": "Serender.Definitions.StockTypes.CreateStockTypeDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Serender.Definitions.StockTypes.StockTypeDto",
+                "typeSimple": "Serender.Definitions.StockTypes.StockTypeDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
+            },
+            "UpdateAsyncByIdAndInput": {
+              "uniqueName": "UpdateAsyncByIdAndInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/Definitions/StockTypes/update",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Serender.Definitions.StockTypes.UpdateStockTypeDto, Serender.Definitions.Application.Contracts",
+                  "type": "Serender.Definitions.StockTypes.UpdateStockTypeDto",
+                  "typeSimple": "Serender.Definitions.StockTypes.UpdateStockTypeDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Serender.Definitions.StockTypes.UpdateStockTypeDto",
+                  "typeSimple": "Serender.Definitions.StockTypes.UpdateStockTypeDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/Definitions/StockTypes/delete",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
+            },
+            "LoadStockTypesByLoadOptions": {
+              "uniqueName": "LoadStockTypesByLoadOptions",
+              "name": "LoadStockTypes",
+              "httpMethod": "GET",
+              "url": "api/Definitions/StockTypes/load-stock-types",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "loadOptions",
+                  "typeAsString": "Serender.Definitions.Shared.DataSourceLoadOptions, Serender.Definitions.Domain.Shared",
+                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "loadOptions",
+                  "name": "loadOptions",
+                  "jsonName": null,
+                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Custom",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "DevExtreme.AspNet.Data.ResponseModel.LoadResult",
+                "typeSimple": "DevExtreme.AspNet.Data.ResponseModel.LoadResult"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockTypes.IStockTypeAppService"
+            }
+          }
+        },
+        "Serender.Definitions.StockGroups.StockGroupController": {
+          "controllerName": "StockGroup",
+          "controllerGroupName": "StockGroup",
+          "isRemoteService": true,
+          "apiVersion": null,
+          "type": "Serender.Definitions.StockGroups.StockGroupController",
+          "interfaces": [
+            {
+              "type": "Serender.Definitions.StockGroups.IStockGroupAppService"
+            }
+          ],
+          "actions": {
+            "GetAsyncById": {
+              "uniqueName": "GetAsyncById",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/Definitions/StockGroups",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Serender.Definitions.StockGroups.StockGroupDto",
+                "typeSimple": "Serender.Definitions.StockGroups.StockGroupDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
+            },
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/Definitions/StockGroups/get",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Serender.Definitions.StockGroups.GetStockGroupListDto, Serender.Definitions.Application.Contracts",
+                  "type": "Serender.Definitions.StockGroups.GetStockGroupListDto",
+                  "typeSimple": "Serender.Definitions.StockGroups.GetStockGroupListDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Filter",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Sorting",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.StockGroups.StockGroupDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Serender.Definitions.StockGroups.StockGroupDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/Definitions/StockGroups/create",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Serender.Definitions.StockGroups.CreateStockGroupDto, Serender.Definitions.Application.Contracts",
+                  "type": "Serender.Definitions.StockGroups.CreateStockGroupDto",
+                  "typeSimple": "Serender.Definitions.StockGroups.CreateStockGroupDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Serender.Definitions.StockGroups.CreateStockGroupDto",
+                  "typeSimple": "Serender.Definitions.StockGroups.CreateStockGroupDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Serender.Definitions.StockGroups.StockGroupDto",
+                "typeSimple": "Serender.Definitions.StockGroups.StockGroupDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
+            },
+            "UpdateAsyncByIdAndInput": {
+              "uniqueName": "UpdateAsyncByIdAndInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/Definitions/StockGroups/update",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Serender.Definitions.StockGroups.UpdateStockGroupDto, Serender.Definitions.Application.Contracts",
+                  "type": "Serender.Definitions.StockGroups.UpdateStockGroupDto",
+                  "typeSimple": "Serender.Definitions.StockGroups.UpdateStockGroupDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Serender.Definitions.StockGroups.UpdateStockGroupDto",
+                  "typeSimple": "Serender.Definitions.StockGroups.UpdateStockGroupDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/Definitions/StockGroups/delete",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
+            },
+            "GetStockTypeLookupAsync": {
+              "uniqueName": "GetStockTypeLookupAsync",
+              "name": "GetStockTypeLookupAsync",
+              "httpMethod": "GET",
+              "url": "api/Definitions/StockGroups/get-stock-type-lookup",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.ListResultDto<Serender.Definitions.StockGroups.StockTypeLookupDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Serender.Definitions.StockGroups.StockTypeLookupDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
+            },
+            "LoadStockGroupsByLoadOptions": {
+              "uniqueName": "LoadStockGroupsByLoadOptions",
+              "name": "LoadStockGroups",
+              "httpMethod": "GET",
+              "url": "api/Definitions/StockGroups/load-stock-groups",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "loadOptions",
+                  "typeAsString": "Serender.Definitions.Shared.DataSourceLoadOptions, Serender.Definitions.Domain.Shared",
+                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "loadOptions",
+                  "name": "loadOptions",
+                  "jsonName": null,
+                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Custom",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "DevExtreme.AspNet.Data.ResponseModel.LoadResult",
+                "typeSimple": "DevExtreme.AspNet.Data.ResponseModel.LoadResult"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
+            },
+            "LoadStockGroups2ByLoadOptions": {
+              "uniqueName": "LoadStockGroups2ByLoadOptions",
+              "name": "LoadStockGroups2",
+              "httpMethod": "GET",
+              "url": "api/Definitions/StockGroups/load-stock-groups2",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "loadOptions",
+                  "typeAsString": "Serender.Definitions.Shared.DataSourceLoadOptions, Serender.Definitions.Domain.Shared",
+                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "loadOptions",
+                  "name": "loadOptions",
+                  "jsonName": null,
+                  "type": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "typeSimple": "Serender.Definitions.Shared.DataSourceLoadOptions",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Custom",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "DevExtreme.AspNet.Data.ResponseModel.LoadResult",
+                "typeSimple": "DevExtreme.AspNet.Data.ResponseModel.LoadResult"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Serender.Definitions.StockGroups.IStockGroupAppService"
             }
           }
         }
