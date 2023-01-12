@@ -24,7 +24,6 @@ export class StockGroupsComponent implements OnInit {
 
   loadstockgroupdatasource:any;
 
-  array : any[] = [];
   loadstocktypelookupdatasource;
   loadstcreate:any;
 
@@ -48,11 +47,12 @@ export class StockGroupsComponent implements OnInit {
   positionOf: string;
   popupdelete = false;
 
-  propsIndex:number = 0;
+
   languageIndex:number;
 
   //scrolling or paging
-  selectedOption: string = 'paging';
+  //selectedOption: string = 'paging';
+  //selectedOption : 'paging'
   props = [
     {text : "Paging" , value : "paging"},
     {text : "Infinite Scrolling", value : "infinite"}
@@ -68,7 +68,6 @@ export class StockGroupsComponent implements OnInit {
 
   //right to left
   languages: string[] = ['Arabic (Right-to-Left direction)', 'English (Left-to-Right direction)'];
-  //rtlEnabled = false;
   // languages = [{text : 'Arabic (Right-to-Left direction)', value:'arabic'},{text : 'English (Left-to-Right direction)', value:'eng'}];
 
 
@@ -77,15 +76,20 @@ export class StockGroupsComponent implements OnInit {
   allowedPageSizes:number[] = [3,6,9]
 
 
-  gridOptions = {
-    displayMode : 'full',
-    allowedPageSize : 3,
-    showPageSizeSelector : true,
-    showInfo : true,
-    showNavButtons : true,
-    placeholder : 'Search...',
-    rtlEnabled : false,
- }
+  gridOptions =
+  {
+   displayMode : 'full',
+   allowedPageSize : 3,
+   showPageSizeSelector : true,
+   showInfo : true,
+   showNavButtons : true,
+   placeholder : 'Search...',
+   rtlEnabled : false,
+   selectedOption: 'paging',
+   isPagerVisible : true
+
+  }
+
 
   constructor(public service:StockGroupService, public readonly list:ListService,
     private fb: FormBuilder)
@@ -108,10 +112,6 @@ export class StockGroupsComponent implements OnInit {
     this.loadstcreate = this.service.loadStockType();
   }
 
-  // disableSorting(){
-  //   this.dxStockGroup.allowSorting = false;
-  // }
-
   saveGridOptions(){
    let serializedOptions = JSON.stringify(this.gridOptions);
    localStorage.setItem("gridOptions", serializedOptions);
@@ -126,10 +126,6 @@ export class StockGroupsComponent implements OnInit {
 
     if(serializedOptions!=null){
         this.gridOptions = JSON.parse(serializedOptions);
-        //tablo refresh..
-        //this.dxStockGroup.instance.refresh();
-    }else{
-        this.gridOptions;
     }
   }
 
@@ -143,24 +139,21 @@ export class StockGroupsComponent implements OnInit {
     this.gridOptions.rtlEnabled = data.value === this.languages[0];
     this.gridOptions.placeholder = this.gridOptions.rtlEnabled ? 'بحث' : 'Search...';
     this.saveGridOptions();
-
   }
 
   // paging or scrolling
   onOptionChange() {
-
-    if (this.selectedOption === 'paging') {
+    if (this.gridOptions.selectedOption === 'paging') {
       this.dxStockGroup.instance.option('paging', { enabled: true });
       this.dxStockGroup.instance.option('scrolling', { mode: 'standard' });
-      // this.propsIndex = 0;
-      // localStorage.setItem("propsIndex",this.propsIndex.toString());
+      this.gridOptions.isPagerVisible = true;
 
-    } else {
+    } else if(this.gridOptions.selectedOption === 'infinite'){
       this.dxStockGroup.instance.option('paging', { enabled: false });
       this.dxStockGroup.instance.option('scrolling', { mode: 'infinite' });
-      // this.propsIndex = 1;
-      // localStorage.setItem("propsIndex",this.propsIndex.toString());
+      this.gridOptions.isPagerVisible = false;
     }
+    this.saveGridOptions();
   }
 
   get isCompactMode() {
@@ -199,7 +192,6 @@ export class StockGroupsComponent implements OnInit {
       name : [this.selectedSg.name || '',Validators.required],
       parentId : [this.selectedSg.parentId || ''],
     })
-    //this.loadStockTypes();
   }
 
   createStockGroup = () =>{

@@ -11,10 +11,21 @@
       <h5> {{gridOptions.rtlEnabled ? 'العدد الإجمالي للبيانات' : 'Toplam veri sayisi'}}  : {{count}}</h5>
   </div>
   <div class="col md-4" class="dxselectbox">
-    <dx-select-box [(ngModel)]="selectedOption"
+    <!-- <dx-select-box [(ngModel)]="selectedOption"
     [items]="props"
-    [value]="props[propsIndex]"
+    [value]="props[0]"
     (ngModelChange)="onOptionChange()"
+    valueExpr="value"
+    displayExpr="text"
+    [rtlEnabled]="gridOptions.rtlEnabled"
+    >
+    </dx-select-box> -->
+    <dx-select-box
+    [items]="props"
+    [value]="props[0]"
+    [(value)]="gridOptions.selectedOption"
+    (valueChange)="changeGridOptions('selectedOption',$event)"
+    (onValueChanged)="onOptionChange()"
     valueExpr="value"
     displayExpr="text"
     [rtlEnabled]="gridOptions.rtlEnabled"
@@ -37,14 +48,12 @@ key="id"
 
 id="dxdg"
 
-[paging] = "{enabled : selectedOption === 'paging' }"
-[pager]=  "{visible : selectedOption === 'paging'}"
-[scrolling]= "{mode : selectedOption === 'infinite' ? 'infinite' : 'standard'}"
+[paging] = "{enabled : gridOptions.selectedOption === 'paging' }"
+[pager]=  "{visible : gridOptions.selectedOption === 'paging'}"
+[scrolling]= "{mode : gridOptions.selectedOption === 'infinite' ? 'infinite' : 'standard'}"
 
 
 [rtlEnabled]="gridOptions.rtlEnabled"
-
-
 >
 
 <dxo-paging [(pageSize)]="gridOptions.allowedPageSize"
@@ -52,13 +61,12 @@ id="dxdg"
 ></dxo-paging>
 
 <dxo-pager
-[visible]="true"
+[visible]="gridOptions.isPagerVisible"
 [allowedPageSizes]="allowedPageSizes"
 [displayMode]="gridOptions.displayMode"
 [showPageSizeSelector]="gridOptions.showPageSizeSelector"
 [showInfo]="gridOptions.showInfo"
 [showNavigationButtons]="gridOptions.showNavButtons"
-
 >
 </dxo-pager>
 
@@ -69,7 +77,7 @@ id="dxdg"
     <dxo-filter-row [visible]="true"></dxo-filter-row>
 
     <dxo-load-panel [enabled]="false"></dxo-load-panel>
-    <dxo-scrolling mode="infinite"></dxo-scrolling>
+    <dxo-scrolling [mode]="gridOptions.selectedOption" ></dxo-scrolling>
     <dxo-sorting mode="none"></dxo-sorting>
 
     <dxo-search-panel
@@ -84,7 +92,7 @@ id="dxdg"
     </dxi-column>
 
     <dxi-column  dataField="stockGroup.id" caption="Id" ></dxi-column>
-    <dxi-column allowSorting="false" dataField="stockType.code" caption="Stock Type" ></dxi-column>
+    <dxi-column  dataField="stockType.code" caption="Stock Type" ></dxi-column>
     <dxi-column  dataField="stockGroup.code" caption="Code" ></dxi-column>
     <dxi-column  dataField="stockGroup.name" caption="Name" ></dxi-column>
     <dxi-column  dataField="stockGroup.parentId" caption="ParentId" >

@@ -69,7 +69,6 @@ export class StockTypesComponent implements OnInit {
     this.loadStockTypes();
   }
 
-
   //counter
   updateCount(){
     this.count = this.dxStockType.instance.totalCount();
@@ -115,7 +114,7 @@ export class StockTypesComponent implements OnInit {
       : this.service.create(this.newSt);
 
     request.subscribe(()=>{
-      this.loadstocktypedatasource.unshift();
+
       this.form.reset();
       this.list.get();
       this.dxStockType.instance.refresh();
